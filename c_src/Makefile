@@ -6,9 +6,9 @@ BASEDIR := $(abspath $(CURDIR)/..)
 PROJECT ?= $(notdir $(BASEDIR))
 PROJECT := $(strip $(PROJECT))
 
-ERTS_INCLUDE_DIR ?= $(shell erl -noshell -eval "io:format(\"~s/erts-~s/include/\", [code:root_dir(), erlang:system_info(version)])." -s erlang halt)
-ERL_INTERFACE_INCLUDE_DIR ?= $(shell erl -noshell -eval "io:format(\"~s\", [code:lib_dir(erl_interface, include)])." -s erlang halt)
-ERL_INTERFACE_LIB_DIR ?= $(shell erl -noshell -eval "io:format(\"~s\", [code:lib_dir(erl_interface, lib)])." -s erlang halt)
+ERTS_INCLUDE_DIR ?= $(shell erl -eval "io:format(\"~s/erts-~s/include/\", [code:root_dir(), erlang:system_info(version)])." -noshell -s erlang halt)
+ERL_INTERFACE_INCLUDE_DIR ?= $(shell erl -eval "io:format(\"~s\", [code:lib_dir(erl_interface, include)])." -noshell -s erlang halt)
+ERL_INTERFACE_LIB_DIR ?= $(shell erl -eval "io:format(\"~s\", [code:lib_dir(erl_interface, lib)])." -noshell -s erlang halt)
 
 C_SRC_DIR = $(CURDIR)
 C_SRC_OUTPUT ?= $(CURDIR)/../priv/$(PROJECT).so
